@@ -120,7 +120,7 @@
     position:relative;border-radius:20px;overflow:hidden;
     aspect-ratio:3/4;background:var(--beige);
   }
-  .hero .photo-wrap img{width:100%;height:100%;object-fit:cover;}
+  .hero .photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
   .hero .photo-badge{
     position:absolute;left:20px;bottom:20px;
     background:var(--white);
@@ -175,8 +175,26 @@
   }
   .form-success h3{margin-bottom:10px;}
   .form-success p{color:var(--ink-soft);}
+  .success-check{
+    width:56px;height:56px;border-radius:50%;
+    background:var(--terracotta);color:var(--white);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;font-weight:700;
+    margin:0 auto 16px;
+  }
+  .success-divider{
+    border:none;border-top:1px solid rgba(147,123,107,0.25);
+    margin:28px 0;
+  }
+  .success-subtitle{font-size:1.1rem;margin-bottom:14px;}
+  .success-checklist{list-style:none;text-align:left;max-width:420px;margin:0 auto;}
+  .success-checklist li{
+    position:relative;padding-left:28px;margin-bottom:10px;color:var(--ink-soft);
+  }
+  .success-checklist li::before{
+    content:"✓";position:absolute;left:0;color:var(--terracotta);font-weight:700;
+  }
   .success-invite{
-    margin-top:28px;
     display:flex;
     align-items:center;
     gap:20px;
@@ -186,10 +204,17 @@
     padding:20px;
   }
   .success-photo{
-    width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;
+    width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:top;flex:none;
   }
   .success-invite-text{color:var(--ink-soft);margin-bottom:12px;}
   .success-actions{display:flex;flex-wrap:wrap;gap:10px;}
+  .success-whatsapp{text-align:center;}
+  .success-whatsapp p{color:var(--ink-soft);margin-bottom:16px;}
+  .btn-instagram{
+    background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+    color:var(--white);
+  }
+  .btn-whatsapp{background:#25D366;color:var(--white);}
   @media (max-width:480px){
     .success-invite{flex-direction:column;text-align:center;}
   }
@@ -201,7 +226,7 @@
     display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;align-items:center;
   }
   .sobre .photo-wrap{border-radius:20px;overflow:hidden;aspect-ratio:4/5;background:var(--beige);}
-  .sobre .photo-wrap img{width:100%;height:100%;object-fit:cover;}
+  .sobre .photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
   .sobre h2{font-size:2rem;margin-bottom:18px;}
   .sobre p{margin-bottom:16px;color:var(--ink-soft);font-size:1.05rem;}
   .sobre .creci-tag{
@@ -235,7 +260,7 @@
     display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;
   }
   .diferenciais .photo-wrap{border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:var(--beige);}
-  .diferenciais .photo-wrap img{width:100%;height:100%;object-fit:cover;}
+  .diferenciais .photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
   .diferenciais h2{font-size:2rem;margin-bottom:28px;}
   .diferenciais ul{list-style:none;display:flex;flex-direction:column;gap:22px;}
   .diferenciais li{display:flex;gap:16px;}
@@ -380,7 +405,21 @@
 
       <div class="field-full">
         <label for="horario">Melhor horário para contato</label>
-        <input type="text" id="horario" name="horario" required placeholder="Ex: manhã, tarde, após 18h...">
+        <select id="horario" name="horario" required>
+          <option value="" disabled selected>Selecione um horário</option>
+          <option value="Bem cedinho, entre 7h e 9h">Bem cedinho, entre 7h e 9h</option>
+          <option value="No meio da manhã, entre 9h e 11h">No meio da manhã, entre 9h e 11h</option>
+          <option value="No horário de almoço, entre 12h e 13h30">No horário de almoço, entre 12h e 13h30</option>
+          <option value="No começo da tarde, entre 13h30 e 16h">No começo da tarde, entre 13h30 e 16h</option>
+          <option value="No fim da tarde, entre 16h e 18h">No fim da tarde, entre 16h e 18h</option>
+          <option value="À noite, entre 18h30 e 21h">À noite, entre 18h30 e 21h</option>
+          <option value="outro">Outro horário (especifique qual)</option>
+        </select>
+      </div>
+
+      <div class="field-full" id="horarioOutroWrap" style="display:none;">
+        <label for="horarioOutro">Especifique o horário</label>
+        <input type="text" id="horarioOutro" name="horarioOutro" placeholder="Ex: sábado de manhã">
       </div>
 
       <div class="field-full">
@@ -390,18 +429,34 @@
     </form>
 
     <div class="form-success" id="formSuccess">
-      <h3>Recebemos seus dados.</h3>
-      <p>A Graziela vai entrar em contato no horário que você indicou.</p>
+      <div class="success-check">✓</div>
+      <h3>Cadastro enviado com sucesso!</h3>
+      <p>Obrigado pelas informações. Agora nossa equipe já recebeu seu cadastro.</p>
+
+      <hr class="success-divider">
+
+      <h4 class="success-subtitle">O que acontece agora?</h4>
+      <ul class="success-checklist">
+        <li>Entraremos em contato no horário escolhido</li>
+        <li>Avaliaremos seu imóvel</li>
+        <li>Você receberá uma orientação personalizada</li>
+      </ul>
+
+      <hr class="success-divider">
 
       <div class="success-invite">
         <img src="assets/img/sobre.jpg" alt="Graziela Marques" class="success-photo">
         <div>
-          <p class="success-invite-text">Siga Graziela no Instagram ou mande uma mensagem para ela agora mesmo.</p>
-          <div class="success-actions">
-            <a href="https://instagram.com/grazielarmarques" target="_blank" rel="noopener" class="btn btn-outline">Seguir no Instagram</a>
-            <a href="https://wa.me/5547989165654" target="_blank" rel="noopener" class="btn btn-outline">Falar no WhatsApp</a>
-          </div>
+          <p class="success-invite-text">Olá! Sou a Graziela Marques. Siga meu Instagram.</p>
+          <a href="https://instagram.com/grazielarmarques" target="_blank" rel="noopener" class="btn btn-instagram">Seguir no Instagram</a>
         </div>
+      </div>
+
+      <hr class="success-divider">
+
+      <div class="success-whatsapp">
+        <p>Quer adiantar seu atendimento? Fale com a Graziela pelo WhatsApp agora mesmo.</p>
+        <a id="whatsappCta" href="https://wa.me/5547989165654" target="_blank" rel="noopener" class="btn btn-whatsapp">Quero falar com a Graziela</a>
       </div>
     </div>
   </div>
@@ -562,6 +617,29 @@
     document.getElementById('paginaField').value = window.location.href;
   })();
 
+  // ETAPA "melhorias": mensagem pronta do WhatsApp no botão da tela de sucesso
+  (function(){
+    var msg = 'Olá, Graziela! Acabei de preencher o formulário no seu site e gostaria de adiantar meu atendimento.';
+    var cta = document.getElementById('whatsappCta');
+    if (cta) { cta.href = 'https://wa.me/5547989165654?text=' + encodeURIComponent(msg); }
+  })();
+
+  // ETAPA "melhorias": campo extra para "Outro horário"
+  var horarioSelect = document.getElementById('horario');
+  var horarioOutroWrap = document.getElementById('horarioOutroWrap');
+  var horarioOutroInput = document.getElementById('horarioOutro');
+
+  horarioSelect.addEventListener('change', function(){
+    if (horarioSelect.value === 'outro') {
+      horarioOutroWrap.style.display = 'block';
+      horarioOutroInput.setAttribute('required', 'required');
+    } else {
+      horarioOutroWrap.style.display = 'none';
+      horarioOutroInput.removeAttribute('required');
+      horarioOutroInput.value = '';
+    }
+  });
+
   var form = document.getElementById('leadForm');
   var submitBtn = form.querySelector('button[type="submit"]');
   var submitBtnDefaultText = submitBtn.textContent;
@@ -573,6 +651,12 @@
     if (form.empresa.value) return;
 
     var data = Object.fromEntries(new FormData(form).entries());
+
+    // se a pessoa escolheu "Outro horário", usa o texto que ela especificou
+    if (data.horario === 'outro') {
+      data.horario = data.horarioOutro ? ('Outro: ' + data.horarioOutro) : 'Outro horário (não especificado)';
+    }
+    delete data.horarioOutro;
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando...';
