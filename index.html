@@ -98,7 +98,21 @@ src="https://www.facebook.com/tr?id=1695615958429867&ev=PageView&noscript=1"
     color:var(--brown);
   }
   .btn-outline:hover{background:var(--brown);color:var(--white);}
-  .btn-wide{width:100%;}
+  .btn-wide{
+    width:100%;
+    background:linear-gradient(135deg,#E0854A,#C2571F);
+    box-shadow:0 16px 40px rgba(194,87,31,0.45);
+    animation:pulseGlow 2.4s ease-in-out infinite;
+  }
+  .btn-wide:hover{
+    transform:translateY(-2px) scale(1.02);
+    animation-play-state:paused;
+    box-shadow:0 20px 48px rgba(194,87,31,0.65);
+  }
+  @keyframes pulseGlow{
+    0%,100%{box-shadow:0 16px 40px rgba(194,87,31,0.45);}
+    50%{box-shadow:0 16px 48px rgba(194,87,31,0.75);}
+  }
 
   /* HEADER */
   header{
