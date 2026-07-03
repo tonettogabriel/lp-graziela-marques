@@ -175,6 +175,24 @@
   }
   .form-success h3{margin-bottom:10px;}
   .form-success p{color:var(--ink-soft);}
+  .success-invite{
+    margin-top:28px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    text-align:left;
+    background:var(--white);
+    border-radius:16px;
+    padding:20px;
+  }
+  .success-photo{
+    width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;
+  }
+  .success-invite-text{color:var(--ink-soft);margin-bottom:12px;}
+  .success-actions{display:flex;flex-wrap:wrap;gap:10px;}
+  @media (max-width:480px){
+    .success-invite{flex-direction:column;text-align:center;}
+  }
   /* honeypot */
   .hp-field{position:absolute;left:-9999px;top:-9999px;}
 
@@ -373,9 +391,18 @@
 
     <div class="form-success" id="formSuccess">
       <h3>Recebemos seus dados.</h3>
-      <p>A Graziela vai entrar em contato no horário que você indicou. Se preferir, fale agora mesmo pelo WhatsApp.</p>
-      <br>
-      <a href="https://wa.me/5547989165654" target="_blank" rel="noopener" class="btn btn-outline">Falar agora no WhatsApp</a>
+      <p>A Graziela vai entrar em contato no horário que você indicou.</p>
+
+      <div class="success-invite">
+        <img src="assets/img/sobre.jpg" alt="Graziela Marques" class="success-photo">
+        <div>
+          <p class="success-invite-text">Siga Graziela no Instagram ou mande uma mensagem para ela agora mesmo.</p>
+          <div class="success-actions">
+            <a href="https://instagram.com/grazielarmarques" target="_blank" rel="noopener" class="btn btn-outline">Seguir no Instagram</a>
+            <a href="https://wa.me/5547989165654" target="_blank" rel="noopener" class="btn btn-outline">Falar no WhatsApp</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
