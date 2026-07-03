@@ -51,8 +51,8 @@ module.exports = async (req, res) => {
     'Status': { select: { name: 'Novo' } }
   };
 
-  if (tipoImovel === 'Casa' || tipoImovel === 'Apartamento') {
-    properties['Tipo de imóvel'] = { select: { name: tipoImovel } };
+  if (tipoImovel) {
+    properties['Tipo de imóvel'] = { select: { name: tipoImovel.slice(0, 100) } };
   }
 
   try {
