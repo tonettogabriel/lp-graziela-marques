@@ -749,7 +749,9 @@
         // fbq('track', 'Lead');
 
         form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
+        var successBox = document.getElementById('formSuccess');
+        successBox.style.display = 'block';
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
       })
       .catch(function(err){
         console.error(err);
