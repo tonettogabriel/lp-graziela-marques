@@ -76,6 +76,31 @@ module.exports = async (req, res) => {
       return;
     }
 
+    const createdPage = await notionRes.json();
+
+    // ETAPA "melhorias": comenta na linha marcando o Gabriel, pra disparar
+    // a notificação (push no celular, se o app do Notion estiver instalado).
+    // Se isso falhar por qualquer motivo, não impede o lead de ser salvo.
+    try {
+      await fetch('https://api.notion.com/v1/comments', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${NOTION_TOKEN}`,
+          'Notion-Version': '2022-06-28',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          parent: { page_id: createdPage.id },
+          rich_text: [
+            { type: 'mention', mention: { type: 'user', user: { id: '057646b9-25b0-478b-8642-9cc5d1162c39' } } },
+            { type: 'text', text: { content: ' novo lead recebido pelo site!' } }
+          ]
+        })
+      });
+    } catch (commentErr) {
+      console.error('Erro ao notificar via comentário:', commentErr);
+    }
+
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Erro inesperado:', err);
